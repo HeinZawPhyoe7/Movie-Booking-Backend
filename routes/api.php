@@ -15,5 +15,8 @@ Route::group([
     Route::post('/me', [AuthController::class, 'me'])->middleware('auth:api')->name('me');
 
     //Create Movie
-    Route::post('/create/movie', [MovieController::class, 'store'])->name('create-movie');
+    Route::post('/create/movies', [MovieController::class, 'store'])->name('create-movies');
+    Route::get('/getAll/movies', [MovieController::class, 'getAll'])->name('getAll-movies');
+    Route::post('/update/movies', [MovieController::class, 'updateMovie'])->name('update-movies');
+    Route::post('/delete/movies', [MovieController::class, 'deleteMovie'])->name('delete-movies');
 });

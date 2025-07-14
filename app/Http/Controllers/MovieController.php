@@ -118,4 +118,19 @@ class MovieController extends Controller
             'code' => 200
         ], 200);
     }
+
+    public function searchMovies(Request $request)
+    {
+        $query = $request->name;
+
+        $movies = Movie::where('title', 'LIKE', "%{$query}%")
+            ->orwhere('genre', 'LIKE', "%{$query}%")
+            ->orwhere('desciption', 'LIKE', "%{$query}%")
+            ->get();
+
+        return response()->json([
+            'message' => 'success',
+            'movies' => $movies
+        ]);
+    }
 }

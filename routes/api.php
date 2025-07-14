@@ -19,4 +19,5 @@ Route::group([
     Route::get('/getAll/movies', [MovieController::class, 'getAll'])->name('getAll-movies');
     Route::post('/update/movies', [MovieController::class, 'updateMovie'])->name('update-movies');
     Route::post('/delete/movies', [MovieController::class, 'deleteMovie'])->name('delete-movies');
+    Route::post('/search/movies', [MovieController::class, 'searchMovies'])->name('search-movie');
 });

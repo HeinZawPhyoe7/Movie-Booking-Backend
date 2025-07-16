@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\MovieDetailController;
 
 Route::group([
     'middleware' => 'api',
@@ -14,10 +15,14 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth:api')->name('refresh');
     Route::post('/me', [AuthController::class, 'me'])->middleware('auth:api')->name('me');
 
-    //Create Movie
+    //Movies
     Route::post('/create/movies', [MovieController::class, 'store'])->name('create-movies');
     Route::get('/getAll/movies', [MovieController::class, 'getAll'])->name('getAll-movies');
     Route::post('/update/movies', [MovieController::class, 'updateMovie'])->name('update-movies');
     Route::post('/delete/movies', [MovieController::class, 'deleteMovie'])->name('delete-movies');
     Route::post('/search/movies', [MovieController::class, 'searchMovies'])->name('search-movie');
+
+    //Movie Details
+    Route::post('/create/movie/details', [MovieDetailController::class, 'store'])->name('create-movie-details');
+    Route::post('/getAll/movie/details', [MovieDetailController::class, 'getAll'])->name('getAll-movie-detail');
 });

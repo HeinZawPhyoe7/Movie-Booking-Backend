@@ -125,7 +125,7 @@ class MovieController extends Controller
 
         $movies = Movie::where('title', 'LIKE', "%{$query}%")
             ->orwhere('genre', 'LIKE', "%{$query}%")
-            ->orwhere('desciption', 'LIKE', "%{$query}%")
+            ->orwhere('description', 'LIKE', "%{$query}%")
             ->get();
 
         return response()->json([

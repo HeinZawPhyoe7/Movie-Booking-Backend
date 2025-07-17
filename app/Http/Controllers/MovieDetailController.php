@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use App\Models\MovieDetail;
 use Illuminate\Http\Request;
 
@@ -32,8 +33,24 @@ class MovieDetailController extends Controller
         ]);
     }
 
-    //     public function getAll(Request $request)
-    //     {
-    //         $movieId = $request->
-    //     }
+
+    public function getByMovieId(Request $request)
+    {
+        $request->validate([
+            'movie_id' => 'required|integer|exists:movies,id',
+        ]);
+
+        $movieId = $request->movie_id;
+
+        $movieDetails = MovieDetail::where('movie_id', $movieId)->get();
+
+        if ($movieDetails->isEmpty()) {
+            return response()->json(['message' => 'No movie details found'], 404);
+        }
+
+        return response()->json([
+            'message' => 'Movie details fetched successfully',
+            'data' => $movieDetails,
+        ]);
+    }
 }

@@ -24,5 +24,5 @@ Route::group([
 
     //Movie Details
     Route::post('/create/movie/details', [MovieDetailController::class, 'store'])->name('create-movie-details');
-    Route::post('/getAll/movie/details', [MovieDetailController::class, 'getAll'])->name('getAll-movie-detail');
+    Route::get('/show/movie/details/{id}', [MovieDetailController::class, 'show'])->name('show-movie-detail');
 });

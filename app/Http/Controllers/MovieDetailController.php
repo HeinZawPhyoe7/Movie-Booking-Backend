@@ -33,24 +33,17 @@ class MovieDetailController extends Controller
         ]);
     }
 
-
-    public function getByMovieId(Request $request)
+    public function show($movieId)
     {
-        $request->validate([
-            'movie_id' => 'required|integer|exists:movies,id',
-        ]);
-
-        $movieId = $request->movie_id;
-
         $movieDetails = MovieDetail::where('movie_id', $movieId)->get();
 
         if ($movieDetails->isEmpty()) {
-            return response()->json(['message' => 'No movie details found'], 404);
+            return response()->json(['message' => 'Movie details not found'], 404);
         }
 
         return response()->json([
             'message' => 'Movie details fetched successfully',
-            'data' => $movieDetails,
+            'movieDetails' => $movieDetails,
         ]);
     }
 }

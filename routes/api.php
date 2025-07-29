@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieDetailController;
+use App\Http\Controllers\SeatController;
 
 Route::group([
     'middleware' => 'api',
@@ -25,4 +26,7 @@ Route::group([
     //Movie Details
     Route::post('/create/movie/details', [MovieDetailController::class, 'store'])->name('create-movie-details');
     Route::get('/show/movie/details/{id}', [MovieDetailController::class, 'show'])->name('show-movie-detail');
+
+    //Seat
+    Route::get('/getAll/seats', [SeatController::class, 'getAll'])->name('getAll-seats');
 });
